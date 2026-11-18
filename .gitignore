@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+engine/.venv/
+
+# Third-party code: fetched at pinned commits by engine/setup_mac.sh
+engine/vendor/
+
+# Model weights and converted models (downloaded / built on first setup or first use)
+engine/models/
+
+# Native helper build output (built by engine/native/build_mac.sh, shipped in release zips)
+engine/bin/
+
+# Test footage and renders (large, and stock footage can't be redistributed)
+tests/
+*.mov
+*.mp4
+*.npy
+
+# Release build output
+dist/

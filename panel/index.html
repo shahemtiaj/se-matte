@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SE Matte</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="mode-fast no-layer">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 16 16"><path d="M9.2 1.5 3.6 9h3.9l-.8 5.5L12.4 7H8.5z" fill="currentColor"/></symbol>
+  <symbol id="i-target" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></symbol>
+  <symbol id="i-layer" viewBox="0 0 16 16"><rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.6 3.2v9.6M10.4 3.2v9.6" stroke="currentColor" stroke-width="1.1" opacity=".55"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 16 16"><path d="M3 5.5h9.5L10 3M13 10.5H3.5L6 13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 16 16"><path d="M5.5 4 2.5 7l3 3M3 7h6.5a3.5 3.5 0 0 1 0 7H7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 12 12"><path d="M2.5 6.3 5 8.6l4.6-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 12 12"><path d="M3.5 5V3.8a2.5 2.5 0 0 1 5 0V5M2.5 5h7v5h-7z" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 16 16"><path d="M1.8 4.2c0-.6.4-1 1-1h3.4l1.4 1.5h5.6c.6 0 1 .4 1 1v6.6c0 .6-.4 1-1 1H2.8c-.6 0-1-.4-1-1z" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 16 16"><path d="M6.5 1.8 7.7 5.3l3.5 1.2-3.5 1.2-1.2 3.5-1.2-3.5L1.8 6.5l3.5-1.2zM12.2 9.4l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6z" fill="currentColor"/></symbol>
+  <symbol id="i-film" viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5 2.5v11M11 2.5v11M2 6h3M2 10h3M11 6h3M11 10h3" stroke="currentColor" stroke-width="1.1"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.8V8l2.2 1.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-disk" viewBox="0 0 16 16"><ellipse cx="8" cy="4.5" rx="5.5" ry="2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.5v7c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2v-7M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M4.2 2.5 7.8 6l-3.6 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header>
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--a1)"/><stop offset="1" style="stop-color:var(--a2)"/></linearGradient></defs>
+      <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#lg)"/>
+      <path d="M12 5.2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm-5.3 13.6c.4-3.2 2.6-5.4 5.3-5.4s4.9 2.2 5.3 5.4Z" fill="#fff"/>
+    </svg>
+    <span class="name">SE <em>Matte</em></span>
+  </div>
+  <button id="engine" class="status off" title="Local AI engine – runs on this computer only">
+    <i></i><span>Engine offline</span>
+  </button>
+</header>
+
+<div id="app">
+  <!-- ============ left / top: the picture -->
+  <div id="viewPane">
+    <section id="empty" class="empty">
+      <div class="empty-art">
+        <svg viewBox="0 0 64 64" aria-hidden="true" class="art">
+          <defs>
+            <pattern id="chk" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#2a2a2a"/><rect width="4" height="4" fill="#333"/><rect x="4" y="4" width="4" height="4" fill="#333"/></pattern>
+          </defs>
+          <rect x="4" y="8" width="56" height="48" rx="6" fill="url(#chk)" stroke="#4a4a4a" stroke-width="1.5"/>
+          <path d="M32 18.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm-11 37c.9-8.4 5.4-13.6 11-13.6s10.1 5.2 11 13.6Z" style="fill:var(--a1)"/>
+        </svg>
+      </div>
+      <div class="empty-t">Remove the background from a video</div>
+      <ol class="steps">
+        <li><i>1</i><div>Select a footage layer in your timeline</div></li>
+        <li><i>2</i><div>Click <b>Use selected layer</b></div></li>
+        <li><i>3</i><div>Check the preview, then click <b>Remove background</b></div></li>
+      </ol>
+      <div id="devPath" class="hidden">
+        <input id="devPathInput" type="text" placeholder="Dev mode: full path to a video file">
+      </div>
+      <button id="btnLayer" class="btn primary big">
+        <svg class="ic"><use href="#i-layer"/></svg><span>Use selected layer</span>
+      </button>
+      <div class="muted small">Runs entirely on this computer. Nothing is uploaded.</div>
+    </section>
+
+    <section id="secPreview" class="preview">
+      <div class="stagebar">
+        <div class="seg" id="viewSeg" title="How the preview shows the result">
+          <button data-view="overlay" class="on" title="Background dimmed, subject tinted">Overlay</button>
+          <button data-view="cutout" title="The result on a checkerboard">Cutout</button>
+          <button data-view="original" title="The untouched frame">Original</button>
+        </div>
+        <label class="toggle" title="Preview follows the After Effects playhead">
+          <input type="checkbox" id="follow" checked><i></i><span>Follow AE</span>
+        </label>
+      </div>
+      <div id="stage">
+        <canvas id="cv"></canvas>
+        <div id="stageMsg" class="hidden"></div>
+        <div id="stageSpin" class="spin hidden"></div>
+        <div id="frameLabel" class="frame-tag">Frame –</div>
+      </div>
+      <div class="stagefoot">
+        <div class="pro-tools pro-only">
+          <div class="seg">
+            <button id="toolAdd" class="on" title="Click adds to the selection"><b class="dot keep"></b>Keep</button>
+            <button id="toolRemove" title="Click removes from the selection (or hold Alt/Option)"><b class="dot rem"></b>Remove</button>
+          </div>
+          <button id="btnUndo" class="btn icon" title="Undo last click on this frame (Cmd/Ctrl+Z)"><svg class="ic"><use href="#i-undo"/></svg></button>
+          <button id="btnClear" class="btn quiet" title="Remove all clicks on this frame">Clear</button>
+        </div>
+        <div class="hint fast-only">People are found automatically. For objects, pets or products use <b>Pro</b>.</div>
+        <div class="hint pro-only">Click what to keep. <b>Alt-click</b> cuts parts out. If tracking slips, go to that frame and click again.</div>
+        <div id="keys" class="keys pro-only"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ right / bottom: the controls -->
+  <aside id="side">
+    <div id="sideScroll">
+      <div id="layerCard" class="layer">
+        <div class="layer-ic" id="layerThumb"><svg class="ic"><use href="#i-layer"/></svg></div>
+        <div class="layer-txt">
+          <div class="lname" id="lName">–</div>
+          <div class="lmeta" id="lMeta"></div>
+        </div>
+        <button id="btnLayer2" class="btn icon" title="Use the layer that is selected in the timeline now"><svg class="ic"><use href="#i-swap"/></svg></button>
+      </div>
+      <div id="processedRow" class="processed hidden">
+        <span class="badge"><svg class="ic"><use href="#i-check"/></svg>Background removed</span>
+        <button id="btnRestore" class="link" title="Put the original footage back on this layer">Restore original</button>
+      </div>
+
+      <div class="group">
+        <div class="glabel">Mode</div>
+        <div class="modes" id="modeSeg">
+          <button data-mode="fast" title="People only · no clicks · a 10-minute clip in about 6 minutes">
+            <svg class="ic"><use href="#i-bolt"/></svg>
+            <span class="m-t">Fast</span><span class="m-s">People, automatic</span>
+          </button>
+          <button data-mode="pro" title="Any subject · click to select · best hair and edges · slower">
+            <svg class="ic"><use href="#i-target"/></svg>
+            <span class="m-t">Pro</span><span class="m-s">Any subject</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="group" id="secSettings">
+        <div class="glabel">Output</div>
+        <div class="field">
+          <span class="lbl">Quality</span>
+          <div class="seg full" id="qualitySeg">
+            <button data-q="standard" class="on" title="Faster">Standard</button>
+            <button data-q="max" title="Slower · finest edges">Max</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lbl">Range</span>
+          <select id="range">
+            <option value="layer">Layer in → out</option>
+            <option value="clip">Whole clip</option>
+          </select>
+        </div>
+        <label class="toggle row pro-only" title="Removes background colour that bleeds into hair and edges">
+          <input type="checkbox" id="decon" checked><i></i><span>Clean edge colours</span>
+        </label>
+
+        <details id="look">
+          <summary><svg class="ic chev"><use href="#i-chev"/></svg><span>Edge look</span>
+            <button id="btnLookReset" class="link" title="Reset all to 0">Reset</button></summary>
+          <div class="slider"><span>Choke</span><input type="range" id="choke" min="-10" max="10" step="0.5" value="0"><em id="chokeV">0</em></div>
+          <div class="slider"><span>Feather</span><input type="range" id="feather" min="0" max="10" step="0.5" value="0"><em id="featherV">0</em></div>
+          <div class="slider"><span>Contrast</span><input type="range" id="contrast" min="0" max="1" step="0.05" value="0"><em id="contrastV">0</em></div>
+          <div class="slider pro-only"><span>Smooth</span><input type="range" id="temporal" min="0" max="1" step="0.05" value="0"><em id="temporalV">0</em></div>
+          <div class="note fast-only">Updates the preview live. Double-click a slider to reset it.</div>
+          <div class="note pro-only">Changing only these and running again reuses the AI work.</div>
+        </details>
+      </div>
+
+      <div class="group" id="secQueue">
+        <div class="glabel"><span>Renders</span><button id="btnClearDone" class="link">Clear finished</button></div>
+        <div id="jobs"></div>
+      </div>
+    </div>
+
+    <div id="actionbar">
+      <button id="btnRun" class="btn primary big run" disabled><svg class="ic"><use href="#i-spark"/></svg><span>Remove background</span></button>
+      <div id="estimate"></div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <span><svg class="ic"><use href="#i-lock"/></svg>100% local</span>
+  <a href="#" id="openFolder" class="hidden"><svg class="ic"><use href="#i-folder"/></svg>Renders folder</a>
+</footer>
+
+<div id="toast" class="hidden"></div>
+
+<script src="js/bridge.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
